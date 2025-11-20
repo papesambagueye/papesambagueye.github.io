@@ -107,7 +107,7 @@ function create3DCarouselCards() {
         card.innerHTML = `
             <div class="project-image-container">
                 <img src="${project.image}" alt="${project.title}" class="project-image"
-                     onerror="this.src='https://via.placeholder.com/320x180/0a0a1a/00f0ff?text=${encodeURIComponent(project.title)}'">
+                     onerror="this.src='https://via.placeholder.com/320x200/0a0a1a/00f0ff?text=${encodeURIComponent(project.title)}'">
                 <div class="project-status project-status-${project.status}">
                     ${project.status === 'complété' ? 'Complété' : 'En Développement'}
                 </div>
@@ -138,13 +138,15 @@ function create3DCarouselCards() {
                     ).join('')}
                 </div>
                 
-                <div class="project-links">
-                    <a href="${project.demoLink}" class="project-link" target="_blank">
-                        <i class="fas fa-external-link-alt"></i> Démo
-                    </a>
-                    <a href="${project.codeLink}" class="project-link" target="_blank">
-                        <i class="fab fa-github"></i> Code
-                    </a>
+                <div class="project-links-container">
+                    <div class="project-links">
+                        <a href="${project.demoLink}" class="project-link" target="_blank">
+                            <i class="fas fa-external-link-alt"></i> Voir la démo
+                        </a>
+                        <a href="${project.codeLink}" class="project-link" target="_blank">
+                            <i class="fab fa-github"></i> Code source
+                        </a>
+                    </div>
                 </div>
             </div>
         `;
