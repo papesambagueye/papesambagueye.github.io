@@ -1307,3 +1307,19 @@ h2 {
         padding: 0.7rem 0.4rem !important;
     }
 }
+
+/* CORRECTION BUG ESPACE FORMULAIRE */
+.contact-form input,
+.contact-form textarea {
+    text-transform: none !important;
+    font-feature-settings: normal !important;
+    font-variant: normal !important;
+    letter-spacing: normal !important;
+    word-spacing: normal !important;
+}
+
+/* Assurer que tous les caractères sont autorisés */
+.contact-form * {
+    text-rendering: auto !important;
+    -webkit-text-security: none !important;
+}
