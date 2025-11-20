@@ -103,9 +103,14 @@ function createCarouselCards() {
         card.className = 'project-card-3d';
         card.setAttribute('data-project-id', project.id);
         
+        // Utiliser des placeholders SVG générés dynamiquement
+        const placeholderSVG = generateProjectPlaceholder(project.title, project.status);
+        
         card.innerHTML = `
             <div class="project-image-container">
-                <img src="${project.image}" alt="${project.title}" class="project-image" onerror="this.src='https://via.placeholder.com/380x200/0a0a1a/00f0ff?text=${encodeURIComponent(project.title)}'">
+                <div class="project-image-placeholder">
+                    ${placeholderSVG}
+                </div>
                 <div class="project-status project-status-${project.status}">
                     ${project.status === 'complété' ? 'Complété' : 'En Développement'}
                 </div>
@@ -155,6 +160,29 @@ function createCarouselCards() {
         
         track.appendChild(card);
     });
+}
+
+// Fonction pour générer des placeholders SVG
+function generateProjectPlaceholder(title, status) {
+    const colors = {
+        'complété': '#00ff88',
+        'en-développement': '#ffc800'
+    };
+    
+    const color = colors[status] || '#00f0ff';
+    
+    return `
+        <svg width="380" height="200" viewBox="0 0 380 200" xmlns="http://www.w3.org/2000/svg">
+            <rect width="380" height="200" fill="#0a0a1a"/>
+            <rect x="10" y="10" width="360" height="180" fill="#050510" stroke="${color}" stroke-width="2"/>
+            <text x="190" y="80" text-anchor="middle" fill="${color}" font-family="Arial" font-size="18" font-weight="bold">${title}</text>
+            <text x="190" y="110" text-anchor="middle" fill="#ffffff" font-family="Arial" font-size="14">Projet ${status === 'complété' ? 'Complété' : 'En Développement'}</text>
+            <circle cx="190" cy="140" r="20" fill="none" stroke="${color}" stroke-width="2">
+                <animate attributeName="r" from="15" to="25" dur="2s" repeatCount="indefinite"/>
+                <animate attributeName="opacity" from="1" to="0.3" dur="2s" repeatCount="indefinite"/>
+            </circle>
+        </svg>
+    `;
 }
 
 function createDots() {
