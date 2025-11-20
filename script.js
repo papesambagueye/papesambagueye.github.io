@@ -106,8 +106,8 @@ function create3DCarouselCards() {
         
         card.innerHTML = `
             <div class="project-image-container">
-                <img src="${project.image}" alt="${project.title}" class="project-image"
-                     onerror="this.src='https://via.placeholder.com/320x200/0a0a1a/00f0ff?text=${encodeURIComponent(project.title)}'">
+                <img src="${project.image}" alt="${project.title}" class="project-image"onerror="this.src='https://via.placeholder.com/320x180/0a0a1a/00f0ff?text=${encodeURIComponent(project.title)}'">
+                     
                 <div class="project-status project-status-${project.status}">
                     ${project.status === 'complété' ? 'Complété' : 'En Développement'}
                 </div>
