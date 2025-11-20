@@ -1206,3 +1206,17 @@ h2 {
         gap: 0.8rem !important;
     }
 }
+
+/* VERSION ENCORE PLUS GRANDE */
+.project-card-3d.extra-large {
+    flex: 0 0 420px !important;
+    height: 550px !important;
+}
+
+.project-image-container.extra-large {
+    height: 220px !important;
+}
+
+.project-content.extra-large {
+    padding: 2rem !important;
+}
