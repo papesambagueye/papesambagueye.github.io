@@ -1011,4 +1011,107 @@ h2 {
         opacity: 1;
         transform: translateX(0);
     }
+
+}
+
+/* CARROUSEL HORIZONTAL SIMPLE */
+.carousel-3d-container {
+    perspective: none !important;
+    height: auto !important;
+    overflow: visible !important;
+}
+
+.carousel-3d {
+    height: auto !important;
+}
+
+.carousel-track {
+    display: flex !important;
+    flex-direction: row !important;
+    gap: 2rem !important;
+    overflow-x: auto !important;
+    overflow-y: hidden !important;
+    padding: 1rem !important;
+    scroll-behavior: smooth !important;
+    transform: none !important;
+    justify-content: flex-start !important;
+    align-items: stretch !important;
+    scrollbar-width: thin;
+    scrollbar-color: var(--primary-color) rgba(255,255,255,0.1);
+}
+
+.carousel-track::-webkit-scrollbar {
+    height: 8px;
+}
+
+.carousel-track::-webkit-scrollbar-track {
+    background: rgba(255,255,255,0.1);
+    border-radius: 4px;
+}
+
+.carousel-track::-webkit-scrollbar-thumb {
+    background: var(--primary-color);
+    border-radius: 4px;
+}
+
+.project-card-3d {
+    position: relative !important;
+    transform: none !important;
+    opacity: 1 !important;
+    filter: none !important;
+    flex: 0 0 350px !important;
+    height: 450px !important;
+    transition: transform 0.3s ease, box-shadow 0.3s ease !important;
+}
+
+.project-card-3d:hover {
+    transform: translateY(-5px) !important;
+    box-shadow: 0 10px 25px rgba(0, 240, 255, 0.3) !important;
+}
+
+/* Cacher les éléments 3D */
+.project-card-3d.active,
+.project-card-3d.left-card,
+.project-card-3d.right-card {
+    transform: none !important;
+    opacity: 1 !important;
+    filter: none !important;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3) !important;
+}
+
+.project-card-3d.active {
+    border-color: var(--primary-color) !important;
+    box-shadow: 0 0 20px rgba(0, 240, 255, 0.4) !important;
+}
+
+/* Cacher la rotation auto et timer */
+.carousel-timer {
+    display: none !important;
+}
+
+/* Garder la navigation mais adapter */
+.carousel-nav {
+    margin-top: 2rem !important;
+}
+
+.nav-btn {
+    background: var(--card-bg) !important;
+    border: 1px solid rgba(255,255,255,0.2) !important;
+}
+
+.nav-btn:hover {
+    background: var(--primary-color) !important;
+}
+
+/* Style pour mobile */
+@media (max-width: 768px) {
+    .project-card-3d {
+        flex: 0 0 300px !important;
+        height: 420px !important;
+    }
+    
+    .carousel-track {
+        gap: 1rem !important;
+        padding: 0.5rem !important;
+    }
 }
