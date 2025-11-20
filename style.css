@@ -1115,3 +1115,94 @@ h2 {
         padding: 0.5rem !important;
     }
 }
+
+/* AGRANDISSEMENT DES CARTES PROJETS */
+.project-card-3d {
+    flex: 0 0 380px !important;  /* Largeur augmentée */
+    height: 500px !important;    /* Hauteur augmentée */
+}
+
+.project-content {
+    padding: 1.5rem !important;
+    display: flex !important;
+    flex-direction: column !important;
+    height: 100% !important;
+}
+
+.project-image-container {
+    height: 200px !important;  /* Image plus grande */
+}
+
+.project-description {
+    font-size: 0.9rem !important;
+    line-height: 1.5 !important;
+    margin-bottom: 1rem !important;
+    flex-grow: 1 !important;
+}
+
+.project-features {
+    margin: 1rem 0 !important;
+}
+
+.project-feature {
+    font-size: 0.8rem !important;
+    margin-bottom: 0.5rem !important;
+}
+
+.project-tech {
+    margin: 1rem 0 !important;
+    flex-wrap: wrap !important;
+}
+
+.tech-tag {
+    font-size: 0.75rem !important;
+    padding: 0.4rem 0.8rem !important;
+    margin: 0.2rem !important;
+}
+
+.project-links {
+    margin-top: auto !important;  /* Pousse les liens vers le bas */
+    display: flex !important;
+    gap: 1rem !important;
+    padding-top: 1rem !important;
+}
+
+.project-link {
+    flex: 1 !important;
+    padding: 0.8rem 1rem !important;
+    font-size: 0.85rem !important;
+    text-align: center !important;
+    background: rgba(0, 240, 255, 0.1) !important;
+    border: 1px solid rgba(0, 240, 255, 0.3) !important;
+    border-radius: 8px !important;
+    transition: all 0.3s ease !important;
+    text-decoration: none !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 0.5rem !important;
+}
+
+.project-link:hover {
+    background: var(--primary-color) !important;
+    color: var(--dark-bg) !important;
+    transform: translateY(-2px) !important;
+    box-shadow: 0 5px 15px rgba(0, 240, 255, 0.3) !important;
+}
+
+/* Ajustement mobile */
+@media (max-width: 768px) {
+    .project-card-3d {
+        flex: 0 0 320px !important;
+        height: 480px !important;
+    }
+    
+    .project-image-container {
+        height: 160px !important;
+    }
+    
+    .project-links {
+        flex-direction: column !important;
+        gap: 0.8rem !important;
+    }
+}
