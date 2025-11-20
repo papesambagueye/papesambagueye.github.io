@@ -84,18 +84,17 @@ function getDefaultProjects() {
 // VARIABLES GLOBALES CARROUSEL
 let currentSlide = 0;
 let autoSlideInterval;
-const ROTATION_DELAY = 20000; // 20 secondes
+const ROTATION_DELAY = 5000; // 5 secondes
 
 function initCarousel() {
-    create3DCarouselCards();
+    createCarouselCards();
     createDots();
-    createTimer();
-    startAutoSlide();
     setupCarouselEvents();
     updateCarousel();
+    startAutoSlide();
 }
 
-function create3DCarouselCards() {
+function createCarouselCards() {
     const track = document.getElementById('carouselTrack');
     track.innerHTML = '';
 
@@ -106,8 +105,7 @@ function create3DCarouselCards() {
         
         card.innerHTML = `
             <div class="project-image-container">
-                <img src="${project.image}" alt="${project.title}" class="project-image" onerror="this.src='https://via.placeholder.com/320x180/0a0a1a/00f0ff?text=${encodeURIComponent(project.title)}'">
-                     
+                <img src="${project.image}" alt="${project.title}" class="project-image" onerror="this.src='https://via.placeholder.com/380x200/0a0a1a/00f0ff?text=${encodeURIComponent(project.title)}'">
                 <div class="project-status project-status-${project.status}">
                     ${project.status === 'complété' ? 'Complété' : 'En Développement'}
                 </div>
@@ -171,74 +169,14 @@ function createDots() {
     });
 }
 
-function createTimer() {
-    const timerHTML = `
-        <div class="carousel-timer">
-            <div class="timer-bar">
-                <div class="timer-progress" id="timerProgress"></div>
-            </div>
-        </div>
-    `;
-    
-    const nav = document.querySelector('.carousel-nav');
-    if (nav && !document.querySelector('.carousel-timer')) {
-        nav.insertAdjacentHTML('beforebegin', timerHTML);
-    }
-}
-
 function updateCarousel() {
-    const cards = document.querySelectorAll('.project-card-3d');
-    const total = cards.length;
-    
-    cards.forEach((card, index) => {
-        // Calcul de la position relative
-        let position = index - currentSlide;
-        
-        // Ajustement pour le défilement circulaire
-        if (position > Math.floor(total / 2)) {
-            position -= total;
-        } else if (position < -Math.floor(total / 2)) {
-            position += total;
-        }
-        
-        const angle = position * (360 / total);
-        const distance = 400; // Distance du centre
-        
-        // Calcul de la position 3D
-        const x = Math.sin(angle * Math.PI / 180) * distance;
-        const z = -Math.cos(angle * Math.PI / 180) * distance;
-        
-        // Réinitialiser toutes les classes
-        card.classList.remove('active', 'left-card', 'right-card');
-        
-        // Appliquer les transformations de base
-        card.style.transform = `translateX(${x}px) translateZ(${z}px) rotateY(${-angle}deg)`;
-        
-        if (position === 0) {
-            // 🎯 CARTE ACTIVE - TRÈS GRANDE ET NETTE
-            card.classList.add('active');
-            card.style.transform = `translateX(${x}px) translateZ(${z}px) scale(var(--active-scale)) rotateY(${-angle}deg)`;
-            card.style.opacity = '1';
-            card.style.filter = 'blur(0) brightness(var(--active-brightness))';
-            
-        } else if (Math.abs(position) === 1) {
-            // 🔄 CARTES ADJACENTES - PETITES ET FLOUES
-            if (position === -1) card.classList.add('left-card');
-            if (position === 1) card.classList.add('right-card');
-            
-            card.style.transform = `translateX(${x}px) translateZ(${z}px) scale(var(--adjacent-scale)) rotateY(${-angle}deg)`;
-            card.style.opacity = 'var(--adjacent-opacity)';
-            card.style.filter = 'blur(4px) brightness(0.8)';
-            
-        } else {
-            // 🌫️ CARTES ÉLOIGNÉES - TRÈS PETITES ET TRÈS FLOUES
-            card.style.transform = `translateX(${x}px) translateZ(${z}px) scale(var(--distant-scale)) rotateY(${-angle}deg)`;
-            card.style.opacity = 'var(--distant-opacity)';
-            card.style.filter = 'blur(8px) brightness(0.6)';
-        }
+    const track = document.getElementById('carouselTrack');
+    const cardWidth = 380 + 32; // largeur carte + gap
+    track.scrollTo({
+        left: currentSlide * cardWidth,
+        behavior: 'smooth'
     });
     
-    // Mettre à jour les dots de navigation
     updateDots();
 }
 
@@ -266,18 +204,7 @@ function goToSlide(index) {
     resetAutoSlide();
 }
 
-function startTimer() {
-    const timerProgress = document.getElementById('timerProgress');
-    if (timerProgress) {
-        timerProgress.classList.remove('animating');
-        // Réinitialiser l'animation
-        void timerProgress.offsetWidth;
-        timerProgress.classList.add('animating');
-    }
-}
-
 function startAutoSlide() {
-    startTimer();
     autoSlideInterval = setInterval(nextSlide, ROTATION_DELAY);
 }
 
@@ -287,54 +214,28 @@ function resetAutoSlide() {
 }
 
 function setupCarouselEvents() {
-    document.querySelector('.next-btn').addEventListener('click', nextSlide);
-    document.querySelector('.prev-btn').addEventListener('click', prevSlide);
+    const nextBtn = document.querySelector('.next-btn');
+    const prevBtn = document.querySelector('.prev-btn');
+    
+    if (nextBtn) nextBtn.addEventListener('click', nextSlide);
+    if (prevBtn) prevBtn.addEventListener('click', prevSlide);
     
     // Pause on hover
     const carousel = document.querySelector('.carousel-3d-container');
-    carousel.addEventListener('mouseenter', () => {
-        clearInterval(autoSlideInterval);
-        const timerProgress = document.getElementById('timerProgress');
-        if (timerProgress) timerProgress.classList.remove('animating');
-    });
-    
-    carousel.addEventListener('mouseleave', () => {
-        startAutoSlide();
-    });
+    if (carousel) {
+        carousel.addEventListener('mouseenter', () => {
+            clearInterval(autoSlideInterval);
+        });
+        
+        carousel.addEventListener('mouseleave', () => {
+            startAutoSlide();
+        });
+    }
     
     // Navigation clavier
     document.addEventListener('keydown', (e) => {
         if (e.key === 'ArrowRight') nextSlide();
         if (e.key === 'ArrowLeft') prevSlide();
-        if (e.key === ' ') { // Espace pour pause/play
-            e.preventDefault();
-            if (autoSlideInterval) {
-                clearInterval(autoSlideInterval);
-                autoSlideInterval = null;
-                document.getElementById('timerProgress')?.classList.remove('animating');
-            } else {
-                startAutoSlide();
-            }
-        }
-    });
-    
-    // Glissement tactile pour mobile
-    let startX = 0;
-    carousel.addEventListener('touchstart', (e) => {
-        startX = e.touches[0].clientX;
-    });
-    
-    carousel.addEventListener('touchend', (e) => {
-        const endX = e.changedTouches[0].clientX;
-        const diff = startX - endX;
-        
-        if (Math.abs(diff) > 50) { // Seuil de glissement
-            if (diff > 0) {
-                nextSlide();
-            } else {
-                prevSlide();
-            }
-        }
     });
 }
 
@@ -347,7 +248,7 @@ function setupContactForm() {
 
     if (form) {
         form.addEventListener('submit', async function(e) {
-            e.preventDefault(); // Empêche la soumission normale
+            e.preventDefault();
             
             // Afficher le loading
             if (submitBtn) {
@@ -359,7 +260,6 @@ function setupContactForm() {
             showFormMessage('Envoi du message en cours...', 'loading');
             
             try {
-                // Envoyer via Formspree API
                 const formData = new FormData(form);
                 
                 const response = await fetch('https://formspree.io/f/manvdylv', {
@@ -392,23 +292,18 @@ function setupContactForm() {
 }
 
 function showFormMessage(message, type) {
-    // Supprimer l'ancien message
     const oldMessage = document.querySelector('.form-message');
     if (oldMessage) oldMessage.remove();
     
-    // Créer le nouveau message
     const messageEl = document.createElement('div');
     messageEl.className = `form-message form-message-${type}`;
     messageEl.textContent = message;
     
-    // Ajouter après le formulaire
     const form = document.getElementById('contactForm');
     form.appendChild(messageEl);
     
-    // Afficher avec animation
     setTimeout(() => messageEl.classList.add('show'), 10);
     
-    // Cacher après 5 secondes
     if (type !== 'error') {
         setTimeout(() => {
             messageEl.classList.remove('show');
@@ -429,13 +324,9 @@ function setupMobileNav() {
 
     if (burger && nav) {
         burger.addEventListener('click', () => {
-            // Toggle Nav
             nav.classList.toggle('nav-active');
-            
-            // Animation Burger
             burger.classList.toggle('toggle');
             
-            // Animation Links
             navLinks.forEach((link, index) => {
                 if (link.style.animation) {
                     link.style.animation = '';
@@ -446,14 +337,17 @@ function setupMobileNav() {
         });
     }
 
-    // Fermer le menu en cliquant sur un lien
     navLinks.forEach(link => {
         link.addEventListener('click', () => {
-            nav.classList.remove('nav-active');
-            burger.classList.remove('toggle');
-            navLinks.forEach(link => {
-                link.style.animation = '';
-            });
+            const nav = document.querySelector('.nav-links');
+            const burger = document.querySelector('.burger');
+            if (nav && burger) {
+                nav.classList.remove('nav-active');
+                burger.classList.remove('toggle');
+                navLinks.forEach(link => {
+                    link.style.animation = '';
+                });
+            }
         });
     });
 }
@@ -473,7 +367,6 @@ function setupScrollAnimations() {
         });
     }, observerOptions);
 
-    // Observer les sections
     document.querySelectorAll('section').forEach(section => {
         observer.observe(section);
     });
@@ -503,5 +396,4 @@ function debounce(func, wait) {
 // Redimensionnement responsive
 window.addEventListener('resize', debounce(() => {
     updateCarousel();
-
 }, 250));
