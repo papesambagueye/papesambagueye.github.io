@@ -344,7 +344,9 @@ function setupContactForm() {
     const btnLoading = submitBtn?.querySelector('.btn-loading');
 
     if (form) {
-        form.addEventListener('submit', function() {
+        form.addEventListener('submit', async function(e) {
+            e.preventDefault(); // Empêche la soumission normale
+            
             // Afficher le loading
             if (submitBtn) {
                 submitBtn.disabled = true;
@@ -353,14 +355,37 @@ function setupContactForm() {
             }
             
             showFormMessage('Envoi du message en cours...', 'loading');
+            
+            try {
+                // Envoyer via Formspree API
+                const formData = new FormData(form);
+                
+                const response = await fetch('https://formspree.io/f/manvdylv', {
+                    method: 'POST',
+                    body: formData,
+                    headers: {
+                        'Accept': 'application/json'
+                    }
+                });
+                
+                if (response.ok) {
+                    showFormMessage('✅ Message envoyé avec succès ! Je vous répondrai dans les plus brefs délais.', 'success');
+                    form.reset();
+                } else {
+                    throw new Error('Erreur d\'envoi');
+                }
+                
+            } catch (error) {
+                showFormMessage('❌ Erreur lors de l\'envoi. Contactez-moi directement à papisgye05@gmail.com', 'error');
+            } finally {
+                // Réactiver le bouton
+                if (submitBtn) {
+                    submitBtn.disabled = false;
+                    if (btnText) btnText.style.display = 'inline-block';
+                    if (btnLoading) btnLoading.style.display = 'none';
+                }
+            }
         });
-        
-        // Vérifier si l'envoi précédent a réussi
-        if (window.location.search.includes('submitted=true')) {
-            showFormMessage('✅ Message envoyé avec succès ! Je vous répondrai dans les plus brefs délais.', 'success');
-            // Nettoyer l'URL
-            window.history.replaceState({}, document.title, window.location.pathname);
-        }
     }
 }
 
@@ -510,4 +535,5 @@ function debounce(func, wait) {
 // Redimensionnement responsive
 window.addEventListener('resize', debounce(() => {
     updateCarousel();
+
 }, 250));
