@@ -106,7 +106,7 @@ function create3DCarouselCards() {
         
         card.innerHTML = `
             <div class="project-image-container">
-                <img src="${project.image}" alt="${project.title}" class="project-image"onerror="this.src='https://via.placeholder.com/320x180/0a0a1a/00f0ff?text=${encodeURIComponent(project.title)}'">
+                <img src="${project.image}" alt="${project.title}" class="project-image" onerror="this.src='https://via.placeholder.com/320x180/0a0a1a/00f0ff?text=${encodeURIComponent(project.title)}'">
                      
                 <div class="project-status project-status-${project.status}">
                     ${project.status === 'complété' ? 'Complété' : 'En Développement'}
@@ -409,40 +409,6 @@ function showFormMessage(message, type) {
     setTimeout(() => messageEl.classList.add('show'), 10);
     
     // Cacher après 5 secondes
-    if (type !== 'error') {
-        setTimeout(() => {
-            messageEl.classList.remove('show');
-            setTimeout(() => {
-                if (messageEl.parentNode) {
-                    messageEl.remove();
-                }
-            }, 500);
-        }, 5000);
-    }
-}
-
-function showFormMessage(message, type) {
-    // Supprimer l'ancien message s'il existe
-    const oldMessage = document.querySelector('.form-message');
-    if (oldMessage) {
-        oldMessage.remove();
-    }
-    
-    // Créer le nouveau message
-    const messageEl = document.createElement('div');
-    messageEl.className = `form-message form-message-${type}`;
-    messageEl.textContent = message;
-    
-    // Ajouter après le formulaire
-    const form = document.getElementById('contactForm');
-    form.appendChild(messageEl);
-    
-    // Afficher avec animation
-    setTimeout(() => {
-        messageEl.classList.add('show');
-    }, 10);
-    
-    // Cacher automatiquement après 5 secondes (sauf pour les erreurs)
     if (type !== 'error') {
         setTimeout(() => {
             messageEl.classList.remove('show');
