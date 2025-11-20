@@ -1,0 +1,64 @@
+{
+  "projects": [
+    {
+      "id": 1,
+      "title": "Shop221",
+      "description": "Plateforme e-commerce pour vendeurs locaux sénégalais avec géolocalisation et QR codes uniques",
+      "image": "images/shop221.jpg",
+      "technologies": ["HTML", "CSS", "JavaScript", "Node.js", "Express", "MySQL", "Leaflet.js", "QR Code", "JWT"],
+      "demoLink": "#",
+      "codeLink": "#",
+      "features": [
+        "Création de comptes vendeurs avec approbation admin",
+        "QR codes uniques pour chaque boutique",
+        "Géolocalisation des boutiques proches",
+        "Catalogue produits avec photos et prix",
+        "Système de recherche avancé"
+      ],
+      "developerHighlight": "Soutien aux petits vendeurs locaux avec une solution complète",
+      "challenges": "Gestion de la géolocalisation et affichage dynamique des boutiques",
+      "role": "Développeur Fullstack - Création frontend, backend et base de données",
+      "status": "complété"
+    },
+    {
+      "id": 2,
+      "title": "AutoFlow",
+      "description": "Plateforme d'automatisation d'entreprise avec assistance IA intégrée",
+      "image": "images/autoflow.jpg",
+      "technologies": ["React", "Node.js", "Express", "MySQL", "IA intégrée", "Electron"],
+      "demoLink": "#",
+      "codeLink": "#",
+      "features": [
+        "Interface guidée pour configurations étape par étape",
+        "Assistance IA intégrée pour optimisations",
+        "Gestion sécurisée des données d'entreprise",
+        "Test et prévisualisation des automatisations",
+        "Version desktop possible avec Electron"
+      ],
+      "developerHighlight": "IA intégrée locale pour guider les utilisateurs sans API externe",
+      "challenges": "Intégration d'IA locale capable d'assister sans dépendances externes",
+      "role": "Développeur Principal - Frontend, backend et intégration IA",
+      "status": "en-développement"
+    },
+    {
+      "id": 3,
+      "title": "Portfolio Personnel",
+      "description": "Site portfolio interactif avec carrousel 3D et design moderne",
+      "image": "images/portfolio.jpg",
+      "technologies": ["HTML5", "CSS3", "JavaScript", "Git", "GitHub Pages"],
+      "demoLink": "#",
+      "codeLink": "#",
+      "features": [
+        "Carrousel 3D responsive",
+        "Design avec effets fluorescents animés",
+        "Optimisation SEO et performances",
+        "Interface utilisateur intuitive",
+        "Compatibilité mobile et desktop"
+      ],
+      "developerHighlight": "Carrousel 3D innovant avec mise en avant des projets",
+      "challenges": "Création d'un carrousel 3D fluide et responsive",
+      "role": "Développeur Frontend - Design et développement complet",
+      "status": "complété"
+    }
+  ]
+}
