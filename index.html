@@ -7,7 +7,6 @@
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
 </head>
 <body>
     <!-- Fond animé abstrait -->
@@ -135,7 +134,7 @@
         </div>
     </section>
 
-    <!-- SECTION PROJETS AVEC CARROUSEL 3D -->
+    <!-- SECTION PROJETS AVEC CARROUSEL HORIZONTAL -->
     <section id="projects">
         <div class="container">
             <h2>Mes Réalisations</h2>
@@ -145,13 +144,6 @@
                 <div class="carousel-3d">
                     <div class="carousel-track" id="carouselTrack">
                         <!-- Les projets seront injectés ici par JavaScript -->
-                    </div>
-                </div>
-                
-                <!-- Timer de progression -->
-                <div class="carousel-timer">
-                    <div class="timer-bar">
-                        <div class="timer-progress" id="timerProgress"></div>
                     </div>
                 </div>
                 
@@ -198,21 +190,21 @@
                     </div>
                 </div>
                 <form class="contact-form" action="https://formspree.io/f/manvdylv" method="POST" id="contactForm">
-    <input type="text" name="name" placeholder="Votre nom" required>
-    <input type="email" name="email" placeholder="Votre email" required>
-    <input type="text" name="subject" placeholder="Sujet" required>
-    <textarea name="message" placeholder="Décrivez votre projet..." rows="5" required></textarea>
-    
-    <!-- Protection anti-spam -->
-    <input type="text" name="_gotcha" style="display:none">
-    
-    <button type="submit" id="submitBtn">
-        <span class="btn-text">Envoyer le message</span>
-        <span class="btn-loading">
-            <i class="fas fa-spinner fa-spin"></i> Envoi en cours...
-        </span>
-    </button>
-</form>
+                    <input type="text" name="name" placeholder="Votre nom" required>
+                    <input type="email" name="email" placeholder="Votre email" required>
+                    <input type="text" name="subject" placeholder="Sujet" required>
+                    <textarea name="message" placeholder="Décrivez votre projet..." rows="5" required></textarea>
+                    
+                    <!-- Protection anti-spam -->
+                    <input type="text" name="_gotcha" style="display:none">
+                    
+                    <button type="submit" id="submitBtn">
+                        <span class="btn-text">Envoyer le message</span>
+                        <span class="btn-loading">
+                            <i class="fas fa-spinner fa-spin"></i> Envoi en cours...
+                        </span>
+                    </button>
+                </form>
             </div>
         </div>
     </section>
@@ -233,5 +225,4 @@
 
     <script src="script.js"></script>
 </body>
-
 </html>
