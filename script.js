@@ -1,7 +1,5 @@
-// DONNÉES DES PROJETS PERSONNALISÉES
 let projects = [];
 
-// Charger les projets depuis un fichier externe
 async function loadProjects() {
     try {
         const response = await fetch('./data/projects.json');
@@ -15,7 +13,6 @@ async function loadProjects() {
     }
 }
 
-// TES PROJETS PERSONNELS
 function getDefaultProjects() {
     return [
         {
@@ -81,10 +78,9 @@ function getDefaultProjects() {
     ];
 }
 
-// VARIABLES GLOBALES CARROUSEL
 let currentSlide = 0;
 let autoSlideInterval;
-const ROTATION_DELAY = 5000; // 5 secondes
+const ROTATION_DELAY = 5000; 
 
 function initCarousel() {
     createCarouselCards();
@@ -103,7 +99,6 @@ function createCarouselCards() {
         card.className = 'project-card-3d';
         card.setAttribute('data-project-id', project.id);
         
-        // Utiliser des placeholders SVG générés dynamiquement
         const placeholderSVG = generateProjectPlaceholder(project.title, project.status);
         
         card.innerHTML = `
@@ -162,7 +157,6 @@ function createCarouselCards() {
     });
 }
 
-// Fonction pour générer des placeholders SVG
 function generateProjectPlaceholder(title, status) {
     const colors = {
         'complété': '#00ff88',
@@ -199,7 +193,7 @@ function createDots() {
 
 function updateCarousel() {
     const track = document.getElementById('carouselTrack');
-    const cardWidth = 380 + 32; // largeur carte + gap
+    const cardWidth = 380 + 32;
     track.scrollTo({
         left: currentSlide * cardWidth,
         behavior: 'smooth'
@@ -248,7 +242,6 @@ function setupCarouselEvents() {
     if (nextBtn) nextBtn.addEventListener('click', nextSlide);
     if (prevBtn) prevBtn.addEventListener('click', prevSlide);
     
-    // Pause on hover
     const carousel = document.querySelector('.carousel-3d-container');
     if (carousel) {
         carousel.addEventListener('mouseenter', () => {
@@ -260,14 +253,12 @@ function setupCarouselEvents() {
         });
     }
     
-    // Navigation clavier
     document.addEventListener('keydown', (e) => {
         if (e.key === 'ArrowRight') nextSlide();
         if (e.key === 'ArrowLeft') prevSlide();
     });
 }
 
-// FORMULAIRE DE CONTACT AVEC FORMSPREE
 function setupContactForm() {
     const form = document.getElementById('contactForm');
     const submitBtn = document.getElementById('submitBtn');
@@ -277,8 +268,7 @@ function setupContactForm() {
     if (form) {
         form.addEventListener('submit', async function(e) {
             e.preventDefault();
-            
-            // Afficher le loading
+           
             if (submitBtn) {
                 submitBtn.disabled = true;
                 if (btnText) btnText.style.display = 'none';
@@ -308,7 +298,7 @@ function setupContactForm() {
             } catch (error) {
                 showFormMessage('❌ Erreur lors de l\'envoi. Contactez-moi directement à papisgye05@gmail.com', 'error');
             } finally {
-                // Réactiver le bouton
+            
                 if (submitBtn) {
                     submitBtn.disabled = false;
                     if (btnText) btnText.style.display = 'inline-block';
@@ -344,7 +334,6 @@ function showFormMessage(message, type) {
     }
 }
 
-// NAVIGATION MOBILE
 function setupMobileNav() {
     const burger = document.querySelector('.burger');
     const nav = document.querySelector('.nav-links');
@@ -380,7 +369,6 @@ function setupMobileNav() {
     });
 }
 
-// ANIMATIONS AU SCROLL
 function setupScrollAnimations() {
     const observerOptions = {
         threshold: 0.1,
@@ -400,7 +388,6 @@ function setupScrollAnimations() {
     });
 }
 
-// INITIALISATION AU CHARGEMENT
 document.addEventListener('DOMContentLoaded', () => {
     loadProjects();
     setupMobileNav();
@@ -408,7 +395,6 @@ document.addEventListener('DOMContentLoaded', () => {
     setupScrollAnimations();
 });
 
-// UTILITAIRES
 function debounce(func, wait) {
     let timeout;
     return function executedFunction(...args) {
@@ -421,7 +407,7 @@ function debounce(func, wait) {
     };
 }
 
-// Redimensionnement responsive
 window.addEventListener('resize', debounce(() => {
     updateCarousel();
 }, 250));
+
