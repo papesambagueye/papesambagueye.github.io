@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
+    <!-- Fond animé abstrait -->
     <div class="animated-bg">
         <div class="floating-shape shape1"></div>
         <div class="floating-shape shape2"></div>
@@ -46,7 +47,7 @@
                 <p>Je conçois des solutions web innovantes qui allient performance technique et créativité</p>
                 <div class="hero-stats">
                     <div class="stat">
-                        <span class="stat-number">3+</span>
+                        <span class="stat-number">5+</span>
                         <span class="stat-label">Projets réalisés</span>
                     </div>
                     <div class="stat">
@@ -116,7 +117,7 @@
                             </div>
                             <div class="quality">
                                 <i class="fas fa-rocket"></i>
-                                <span>Autonome</span>
+                                <span>Freelance comme en équipe</span>
                             </div>
                             <div class="quality">
                                 <i class="fas fa-sync-alt"></i>
@@ -124,7 +125,12 @@
                             </div>
                             <div class="quality">
                                 <i class="fas fa-project-diagram"></i>
-                                <span>Organisé</span>
+                                <span>Organisé et methodique</span>
+                            </div>
+                            <div class="quality">
+                                <i class="fas fa-anchor"></i>
+                                <span>Résilient</span>
+                            </div>
                             </div>
                         </div>
                     </div>
@@ -133,14 +139,16 @@
         </div>
     </section>
 
+    <!-- SECTION PROJETS AVEC CARROUSEL HORIZONTAL -->
     <section id="projects">
         <div class="container">
             <h2>Mes Réalisations</h2>
-            <p class="section-subtitle">Des projets innovants qui démontrent mes compétences techniques</p>
+            <p class="section-subtitle">Des projets innovants sous-tendus par de solides compétences techniques.</p>
             
             <div class="carousel-3d-container">
                 <div class="carousel-3d">
                     <div class="carousel-track" id="carouselTrack">
+                        <!-- Les projets seront injectés ici par JavaScript -->
                     </div>
                 </div>
                 
@@ -149,6 +157,7 @@
                         <i class="fas fa-chevron-left"></i>
                     </button>
                     <div class="carousel-dots" id="carouselDots">
+                        <!-- Points de navigation -->
                     </div>
                     <button class="nav-btn next-btn">
                         <i class="fas fa-chevron-right"></i>
@@ -191,6 +200,7 @@
                     <input type="text" name="subject" placeholder="Sujet" required>
                     <textarea name="message" placeholder="Décrivez votre projet..." rows="5" required></textarea>
                     
+                    <!-- Protection anti-spam -->
                     <input type="text" name="_gotcha" style="display:none">
                     
                     <button type="submit" id="submitBtn">
@@ -221,4 +231,3 @@
     <script src="script.js"></script>
 </body>
 </html>
-
