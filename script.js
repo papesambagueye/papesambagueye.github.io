@@ -1,5 +1,7 @@
+// DONNÉES DES PROJETS PERSONNALISÉES
 let projects = [];
 
+// Charger les projets depuis un fichier externe
 async function loadProjects() {
     try {
         const response = await fetch('./data/projects.json');
@@ -13,30 +15,51 @@ async function loadProjects() {
     }
 }
 
+// TES PROJETS PERSONNELS
 function getDefaultProjects() {
     return [
         {
             id: 1,
-            title: "Shop221",
-            description: "Plateforme e-commerce pour vendeurs locaux sénégalais avec géolocalisation et QR codes uniques",
-            image: "images/shop221.jpg",
-            technologies: ["HTML", "CSS", "JavaScript", "Node.js", "Express", "MySQL", "Leaflet.js", "QR Code", "JWT"],
+            title: "Maquette publicitaire Shell Select",
+            description: "Conception et concrétisation des affiches pour l'entreprise BIMA CASH de SHELL",
+            image: "images/shell-select.jpg",
+            technologies: ["Adobe Creative Suite", "Figma", "Photoshop", "Illustrator", "Design Print", "UI/UX"],
             demoLink: "#",
             codeLink: "#",
             features: [
-                "Création de comptes vendeurs avec approbation admin",
-                "QR codes uniques pour chaque boutique",
-                "Géolocalisation des boutiques proches",
-                "Catalogue produits avec photos et prix",
-                "Système de recherche avancé"
+                "Conception visuelle sur-mesure",
+                "Adaptation multi-supports",
+                "Respect de la charte graphique Shell",
+                "Optimisation pour l'impression",
+                "Variations créatives selon campagnes"
             ],
-            developerHighlight: "Soutien aux petits vendeurs locaux avec une solution complète",
-            challenges: "Gestion de la géolocalisation et affichage dynamique des boutiques",
-            role: "Développeur Fullstack - Création frontend, backend et base de données",
+            developerHighlight: "Création de visuels impactants alignés avec l'identité de marque",
+            challenges: "Adapter le message BIMA CASH à l'univers visuel Shell tout en maintenant une forte attractivité",
+            role: "Designer Graphique - Conception visuelle et direction artistique",
             status: "complété"
         },
         {
             id: 2,
+            title: "Portfolio Personnel",
+            description: "Site portfolio interactif avec carrousel 3D et design moderne",
+            image: "images/portfolio.jpg",
+            technologies: ["HTML5", "CSS3", "JavaScript", "Git", "GitHub Pages"],
+            demoLink: "#",
+            codeLink: "#",
+            features: [
+                "Carrousel 3D responsive",
+                "Design avec effets fluorescents animés",
+                "Optimisation SEO et performances",
+                "Interface utilisateur intuitive",
+                "Compatibilité mobile et desktop"
+            ],
+            developerHighlight: "Carrousel 3D innovant avec mise en avant des projets",
+            challenges: "Création d'un carrousel 3D fluide et responsive",
+            role: "Développeur Frontend - Design et développement complet",
+            status: "complété"
+        },
+        {
+            id: 3,
             title: "AutoFlow",
             description: "Plateforme d'automatisation d'entreprise avec assistance IA intégrée",
             image: "images/autoflow.jpg",
@@ -56,31 +79,52 @@ function getDefaultProjects() {
             status: "en-développement"
         },
         {
-            id: 3,
-            title: "Portfolio Personnel",
-            description: "Site portfolio interactif avec carrousel 3D et design moderne",
-            image: "images/portfolio.jpg",
-            technologies: ["HTML5", "CSS3", "JavaScript", "Git", "GitHub Pages"],
+            id: 4,
+            title: "Shop221",
+            description: "Plateforme e-commerce pour vendeurs locaux sénégalais avec géolocalisation et QR codes uniques",
+            image: "images/shop221.jpg",
+            technologies: ["HTML", "CSS", "JavaScript", "Node.js", "Express", "MySQL", "Leaflet.js", "QR Code", "JWT"],
             demoLink: "#",
             codeLink: "#",
             features: [
-                "Carrousel 3D responsive",
-                "Design avec effets fluorescents animés",
-                "Optimisation SEO et performances",
-                "Interface utilisateur intuitive",
-                "Compatibilité mobile et desktop"
+                "Création de comptes vendeurs avec approbation admin",
+                "QR codes uniques pour chaque boutique",
+                "Géolocalisation des boutiques proches",
+                "Catalogue produits avec photos et prix",
+                "Système de recherche avancé"
             ],
-            developerHighlight: "Carrousel 3D innovant avec mise en avant des projets",
-            challenges: "Création d'un carrousel 3D fluide et responsive",
-            role: "Développeur Frontend - Design et développement complet",
+            developerHighlight: "Soutien aux petits vendeurs locaux avec une solution complète",
+            challenges: "Gestion de la géolocalisation et affichage dynamique des boutiques",
+            role: "Développeur Fullstack - Création frontend, backend et base de données",
+            status: "en-développement"
+        },
+        {
+            id: 5,
+            title: "Système de Gestion Longrich Saint-Louis",
+            description: "Plateforme intégrée de suivi commercial avec gestion automatique des stocks, analyse prédictive et reporting avancé",
+            image: "images/longrich-system.jpg",
+            technologies: ["PHP 8", "MySQL Avancé", "JavaScript", "Bootstrap 5", "API REST", "Electron Desktop"],
+            demoLink: "#",
+            codeLink: "#",
+            features: [
+                "Monitoring Temps Réel des Stocks et Ventes",
+                "Analyse Prédictive et Intelligence Business",
+                "Gestion Centralisée Clients et Transactions",
+                "Tableaux de Bord Interactifs et Rapports Dynamiques",
+                "Alertes Intelligentes et Recommandations"
+            ],
+            developerHighlight: "Développement d'un moteur d'IA local pour l'optimisation automatique et les prévisions business",
+            challenges: "Création d'algorithmes de machine learning autonomes sans dépendances externes cloud",
+            role: "Développeur Full-Stack - Architecture, backend, frontend et intelligence artificielle",
             status: "complété"
         }
     ];
 }
 
+// VARIABLES GLOBALES CARROUSEL
 let currentSlide = 0;
 let autoSlideInterval;
-const ROTATION_DELAY = 5000; 
+const ROTATION_DELAY = 5000; // 5 secondes
 
 function initCarousel() {
     createCarouselCards();
@@ -99,6 +143,7 @@ function createCarouselCards() {
         card.className = 'project-card-3d';
         card.setAttribute('data-project-id', project.id);
         
+        // Utiliser des placeholders SVG générés dynamiquement
         const placeholderSVG = generateProjectPlaceholder(project.title, project.status);
         
         card.innerHTML = `
@@ -157,6 +202,7 @@ function createCarouselCards() {
     });
 }
 
+// Fonction pour générer des placeholders SVG
 function generateProjectPlaceholder(title, status) {
     const colors = {
         'complété': '#00ff88',
@@ -193,7 +239,7 @@ function createDots() {
 
 function updateCarousel() {
     const track = document.getElementById('carouselTrack');
-    const cardWidth = 380 + 32;
+    const cardWidth = 380 + 32; // largeur carte + gap
     track.scrollTo({
         left: currentSlide * cardWidth,
         behavior: 'smooth'
@@ -242,6 +288,7 @@ function setupCarouselEvents() {
     if (nextBtn) nextBtn.addEventListener('click', nextSlide);
     if (prevBtn) prevBtn.addEventListener('click', prevSlide);
     
+    // Pause on hover
     const carousel = document.querySelector('.carousel-3d-container');
     if (carousel) {
         carousel.addEventListener('mouseenter', () => {
@@ -253,12 +300,14 @@ function setupCarouselEvents() {
         });
     }
     
+    // Navigation clavier
     document.addEventListener('keydown', (e) => {
         if (e.key === 'ArrowRight') nextSlide();
         if (e.key === 'ArrowLeft') prevSlide();
     });
 }
 
+// FORMULAIRE DE CONTACT AVEC FORMSPREE
 function setupContactForm() {
     const form = document.getElementById('contactForm');
     const submitBtn = document.getElementById('submitBtn');
@@ -268,7 +317,8 @@ function setupContactForm() {
     if (form) {
         form.addEventListener('submit', async function(e) {
             e.preventDefault();
-           
+            
+            // Afficher le loading
             if (submitBtn) {
                 submitBtn.disabled = true;
                 if (btnText) btnText.style.display = 'none';
@@ -298,7 +348,7 @@ function setupContactForm() {
             } catch (error) {
                 showFormMessage('❌ Erreur lors de l\'envoi. Contactez-moi directement à papisgye05@gmail.com', 'error');
             } finally {
-            
+                // Réactiver le bouton
                 if (submitBtn) {
                     submitBtn.disabled = false;
                     if (btnText) btnText.style.display = 'inline-block';
@@ -334,6 +384,7 @@ function showFormMessage(message, type) {
     }
 }
 
+// NAVIGATION MOBILE
 function setupMobileNav() {
     const burger = document.querySelector('.burger');
     const nav = document.querySelector('.nav-links');
@@ -369,6 +420,7 @@ function setupMobileNav() {
     });
 }
 
+// ANIMATIONS AU SCROLL
 function setupScrollAnimations() {
     const observerOptions = {
         threshold: 0.1,
@@ -388,6 +440,7 @@ function setupScrollAnimations() {
     });
 }
 
+// INITIALISATION AU CHARGEMENT
 document.addEventListener('DOMContentLoaded', () => {
     loadProjects();
     setupMobileNav();
@@ -395,6 +448,7 @@ document.addEventListener('DOMContentLoaded', () => {
     setupScrollAnimations();
 });
 
+// UTILITAIRES
 function debounce(func, wait) {
     let timeout;
     return function executedFunction(...args) {
@@ -407,7 +461,7 @@ function debounce(func, wait) {
     };
 }
 
+// Redimensionnement responsive
 window.addEventListener('resize', debounce(() => {
     updateCarousel();
 }, 250));
-
